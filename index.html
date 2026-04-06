@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sapelec – Matériels Électriques Bâtiment & Industrie | Le Tampon</title>
+  <meta name="description" content="Sapelec, votre fournisseur de matériels électriques pour le bâtiment et l'industrie à Le Tampon. Devis gratuit, service professionnel et réactif." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0B1A2E;
+      --navy2:   #112240;
+      --blue:    #1A3A6B;
+      --accent:  #F5A623;
+      --accent2: #E8941A;
+      --white:   #FFFFFF;
+      --light:   #F4F7FB;
+      --muted:   #6B7A90;
+      --border:  #DDE4EF;
+      --text:    #1E2D42;
+      --radius:  10px;
+      --shadow:  0 4px 24px rgba(11,26,46,.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11,26,46,.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 68px;
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: 800; color: var(--white);
+      letter-spacing: -.5px; text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.75); text-decoration: none;
+      font-size: .9rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: var(--navy) !important;
+      padding: 9px 20px; border-radius: 6px;
+      font-weight: 700 !important; font-size: .875rem !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--accent2) !important; color: var(--navy) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; transition: .3s; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 68px; left: 0; right: 0;
+        background: var(--navy); padding: 20px 24px 28px;
+        gap: 18px; border-top: 1px solid rgba(255,255,255,.08);
+      }
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1d4080 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 70% 40%, rgba(245,166,35,.08) 0%, transparent 55%),
+        radial-gradient(circle at 20% 80%, rgba(26,58,107,.5) 0%, transparent 50%);
+    }
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 120px 24px 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,166,35,.15); border: 1px solid rgba(245,166,35,.3);
+      color: var(--accent); border-radius: 100px;
+      padding: 6px 14px; font-size: .8rem; font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero-badge::before { content: '⚡'; }
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; color: var(--white);
+      line-height: 1.15; letter-spacing: -.5px;
+      margin-bottom: 20px;
+    }
+    .hero-title .highlight { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,.7);
+      line-height: 1.7; margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: var(--navy);
+      padding: 14px 28px; border-radius: 8px;
+      font-weight: 700; font-size: .95rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(245,166,35,.35);
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,.3);
+      padding: 13px 26px; border-radius: 8px;
+      font-weight: 600; font-size: .95rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.05); }
+
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      margin-top: 48px;
+      background: rgba(255,255,255,.1); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .stat {
+      background: rgba(255,255,255,.05);
+      padding: 20px 16px; text-align: center;
+    }
+    .stat-num { font-size: 1.7rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: .75rem; color: rgba(255,255,255,.55); margin-top: 4px; }
+
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex; align-items: center; gap: 16px;
+      backdrop-filter: blur(4px);
+      animation: floatIn .6s ease both;
+    }
+    .hero-card:nth-child(2) { animation-delay: .15s; }
+    .hero-card:nth-child(3) { animation-delay: .3s; }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .hero-card-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(245,166,35,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .hero-card-title { font-weight: 700; color: var(--white); font-size: .95rem; }
+    .hero-card-desc { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: 3px; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 88px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      text-transform: uppercase; letter-spacing: 2px; font-size: .75rem;
+      font-weight: 700; color: var(--accent); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; color: var(--text); letter-spacing: -.3px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      margin-top: 14px; font-size: 1rem;
+      color: var(--muted); max-width: 560px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 56px; }
+
+    /* ── TRUST BAR ── */
+    #trust {
+      padding: 0; background: var(--light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-around;
+      flex-wrap: wrap; gap: 0;
+      padding: 0;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 22px 24px; flex: 1; min-width: 200px;
+      border-right: 1px solid var(--border);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .trust-text strong { display: block; font-weight: 700; font-size: .9rem; color: var(--text); }
+    .trust-text span { font-size: .8rem; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .trust-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .trust-item:last-child { border-bottom: none; }
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .about-img {
+      border-radius: 16px; overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-img-inner { text-align: center; padding: 40px; }
+    .about-img-icon { font-size: 5rem; display: block; margin-bottom: 16px; }
+    .about-img-text { color: rgba(255,255,255,.7); font-size: .95rem; line-height: 1.6; }
+    .about-img-text strong { color: var(--accent); display: block; font-size: 1.1rem; margin-bottom: 8px; }
+
+    .about-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF8EC; border: 1px solid #FDDFA0;
+      color: #92620A; border-radius: 6px;
+      padding: 5px 12px; font-size: .8rem; font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .about-body { font-size: .97rem; color: #3A4A5C; line-height: 1.75; }
+    .about-body p + p { margin-top: 16px; }
+    .about-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .9rem; color: var(--text);
+    }
+    .about-list li::before {
+      content: '✓';
+      color: var(--accent); font-weight: 800; flex-shrink: 0;
+      background: #FFF8EC; border-radius: 50%;
+      width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--light); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 28px;
+      transition: box-shadow .25s, transform .2s, border-color .2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .3s;
+    }
+    .service-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); border-color: #C8D4E8; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: linear-gradient(135deg, #EBF2FF, #D6E6FF);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 20px;
+    }
+    .service-name { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .service-desc { font-size: .875rem; color: var(--muted); line-height: 1.65; }
+    .service-items {
+      list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 6px;
+    }
+    .service-items li {
+      font-size: .82rem; color: #4A5D72;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .service-items li::before { content: '→'; color: var(--accent); font-weight: 700; }
+
+    /* ── ZONE ── */
+    #zone { background: var(--white); }
+    .zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .zone-map {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid #C5D8F5;
+      aspect-ratio: 4/3;
+    }
+    .zone-map iframe {
+      width: 100%; height: 100%; display: block; border: 0;
+    }
+    .zone-address {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 24px; font-size: .9rem; font-weight: 600; color: var(--text);
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 16px;
+    }
+    .zone-address-icon { font-size: 1rem; }
+
+    @media (max-width: 768px) {
+      .zone-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── WHY ── */
+    #why {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      position: relative; overflow: hidden;
+    }
+    #why::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    #why .section-title { color: var(--white); }
+    #why .section-label { color: var(--accent); }
+    #why .section-sub { color: rgba(255,255,255,.6); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;
+      position: relative; z-index: 1;
+    }
+    .why-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 28px 24px;
+      transition: background .25s;
+    }
+    .why-card:hover { background: rgba(255,255,255,.11); }
+    .why-num { font-size: 2rem; font-weight: 800; color: var(--accent); opacity: .5; margin-bottom: 12px; }
+    .why-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .why-desc { font-size: .855rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--light); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px;
+    }
+    .review-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 24px;
+      transition: box-shadow .2s;
+    }
+    .review-card:hover { box-shadow: var(--shadow); }
+    .review-stars { color: #F5A623; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text { font-size: .9rem; color: #3A4A5C; line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+    .review-text::before { content: '"'; }
+    .review-text::after  { content: '"'; }
+    .reviewer { display: flex; align-items: center; gap: 12px; }
+    .reviewer-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .9rem; color: var(--white); flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 700; font-size: .875rem; color: var(--text); }
+    .reviewer-role { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .reviews-note { text-align: center; margin-top: 32px; font-size: .82rem; color: var(--muted); font-style: italic; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-block-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: .9rem; color: #3A4A5C; text-decoration: none;
+    }
+    .contact-item:hover .contact-val { color: var(--accent); }
+    .contact-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--light); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; margin-top: 1px;
+    }
+    .contact-label { font-size: .75rem; color: var(--muted); }
+    .contact-val { font-weight: 600; color: var(--text); margin-top: 2px; }
+    .contact-cta-box {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 14px; padding: 28px; margin-top: 8px;
+    }
+    .contact-cta-box-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .contact-cta-box-sub { font-size: .83rem; color: rgba(255,255,255,.6); margin-bottom: 18px; }
+    .contact-cta-box .btn-primary { width: 100%; justify-content: center; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: .82rem; font-weight: 600; color: var(--text); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: .9rem; color: var(--text);
+      font-family: inherit; background: var(--white);
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,58,107,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      background: var(--navy); color: var(--white);
+      border: none; padding: 14px 28px; border-radius: 8px;
+      font-size: .95rem; font-weight: 700; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .2s, transform .15s;
+    }
+    .form-submit:hover { background: var(--blue); transform: translateY(-1px); }
+    .form-note { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.55);
+      padding: 48px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+    }
+    .footer-brand .logo { display: block; margin-bottom: 12px; font-size: 1.4rem; }
+    .footer-brand p { font-size: .85rem; line-height: 1.65; }
+    .footer-col h4 { font-size: .85rem; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,.5); text-decoration: none;
+      font-size: .83rem; transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-divider {
+      max-width: 1100px; margin: 32px auto 0;
+      border: none; border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; font-size: .78rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ── FLOATING CTA ── */
+    .floating-cta {
+      position: fixed; bottom: 28px; right: 24px; z-index: 50;
+      display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+    }
+    .float-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 20px; border-radius: 100px;
+      font-weight: 700; font-size: .875rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,.2);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .float-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,.25); }
+    .float-call { background: #22C55E; color: white; }
+    .float-mail { background: var(--accent); color: var(--navy); }
+
+    /* ── SCROLL ANIMATION ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 480px) {
+      section { padding: 64px 18px; }
+      .hero-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">SAP<span>ELEC</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">L'entreprise</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#zone">Zone</a></li>
+      <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-content reveal">
+      <div class="hero-badge">Spécialiste électricité au Tampon</div>
+      <h1 class="hero-title">
+        Votre fournisseur de <span class="highlight">matériels électriques</span> de confiance
+      </h1>
+      <p class="hero-sub">
+        Sapelec accompagne les professionnels du bâtiment et de l'industrie à Le Tampon
+        et ses environs. Qualité, disponibilité et conseil expert — à chaque projet.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">⚡ Demander un devis gratuit</a>
+        <a href="tel:0692607678" class="btn-outline">📞 0692 607 678</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">974</div>
+          <div class="stat-label">Réunion</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Pro</div>
+          <div class="stat-label">Matériels certifiés</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Fast</div>
+          <div class="stat-label">Réponse rapide</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-icon">🏗️</div>
+        <div>
+          <div class="hero-card-title">Bâtiment & Industrie</div>
+          <div class="hero-card-desc">Matériels adaptés à chaque chantier</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🔌</div>
+        <div>
+          <div class="hero-card-title">Large gamme de produits</div>
+          <div class="hero-card-desc">Câblage, appareillage, protection, éclairage</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🤝</div>
+        <div>
+          <div class="hero-card-title">Conseil personnalisé</div>
+          <div class="hero-card-desc">Un interlocuteur dédié pour votre projet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">✅</div>
+      <div class="trust-text">
+        <strong>Produits certifiés</strong>
+        <span>Normes NF & CE garanties</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📦</div>
+      <div class="trust-text">
+        <strong>Stock local</strong>
+        <span>Disponibilité immédiate</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">💬</div>
+      <div class="trust-text">
+        <strong>Conseil expert</strong>
+        <span>Accompagnement technique</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🏝️</div>
+      <div class="trust-text">
+        <strong>Ancré à La Réunion</strong>
+        <span>Au service des professionnels du 974</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <div class="about-img-inner">
+          <span class="about-img-icon">⚡</span>
+          <div class="about-img-text">
+            <strong>Sapelec — Le Tampon</strong>
+            Votre partenaire électrique<br>de confiance à La Réunion
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-label">Qui sommes-nous</div>
+        <h2 class="section-title">Une entreprise locale à votre service</h2>
+        <div class="about-tag">📍 34 rue du Tampon, 97430</div>
+        <div class="about-body">
+          <p>Sapelec est une entreprise spécialisée dans la vente de matériels électriques pour le bâtiment et l'industrie, implantée au cœur du Tampon à La Réunion.</p>
+          <p>Nous accompagnons artisans, entreprises du BTP, gestionnaires de bâtiments et industriels dans leurs projets électriques, en leur fournissant des produits de qualité adaptés aux contraintes du terrain réunionnais.</p>
+        </div>
+        <ul class="about-list">
+          <li>Fournisseur de référence en matériels électriques professionnels</li>
+          <li>Connaissance approfondie des normes NFC 15-100 et locales</li>
+          <li>Équipe disponible et réactive pour vos demandes urgentes</li>
+          <li>Gamme complète : bâtiment, tertiaire, industrie</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Ce que nous proposons</div>
+      <h2 class="section-title">Nos gammes de matériels</h2>
+      <p class="section-sub">Une offre complète pour couvrir tous vos besoins électriques, du petit chantier résidentiel aux installations industrielles complexes.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🔌</div>
+        <div class="service-name">Câblage & Fils électriques</div>
+        <div class="service-desc">Câbles HO7V-R, HO7V-U, câbles rigides, souples, blindés, gainés — tous sections et longueurs.</div>
+        <ul class="service-items">
+          <li>Câbles mono et multipolaires</li>
+          <li>Câbles industriels résistants</li>
+          <li>Gaines ICTA, IRO, PVC</li>
+          <li>Chemins de câbles</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🛡️</div>
+        <div class="service-name">Protection & Appareillage</div>
+        <div class="service-desc">Disjoncteurs, interrupteurs différentiels, fusibles, coffrets — pour installations conformes et sécurisées.</div>
+        <ul class="service-items">
+          <li>Disjoncteurs divisionnaires</li>
+          <li>Interrupteurs différentiels 30mA/300mA</li>
+          <li>Tableaux et coffrets électriques</li>
+          <li>Parafoudres et parasurtenseurs</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💡</div>
+        <div class="service-name">Éclairage professionnel</div>
+        <div class="service-desc">Solutions d'éclairage LED, industriel et tertiaire pour tous types de locaux et chantiers.</div>
+        <ul class="service-items">
+          <li>Luminaires LED intérieur/extérieur</li>
+          <li>Projecteurs de chantier</li>
+          <li>Éclairage industriel (halles, entrepôts)</li>
+          <li>Détecteurs et capteurs</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏭</div>
+        <div class="service-name">Matériels industriels</div>
+        <div class="service-desc">Contacteurs, relais, variateurs, moteurs et automatismes pour vos installations industrielles.</div>
+        <ul class="service-items">
+          <li>Contacteurs et relais thermiques</li>
+          <li>Démarreurs et variateurs</li>
+          <li>Armoires électriques</li>
+          <li>Capteurs industriels</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Outillage & Consommables</div>
+        <div class="service-desc">Outillage électrique professionnel, EPI, consommables et accessoires pour électriciens.</div>
+        <ul class="service-items">
+          <li>Pinces, multimètres, testeurs</li>
+          <li>Équipements de protection individuelle</li>
+          <li>Embouts, cosses, connecteurs</li>
+          <li>Rubans et gaines thermo</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏠</div>
+        <div class="service-name">Matériels bâtiment</div>
+        <div class="service-desc">Prises, interrupteurs, domotique — tout pour l'électricité résidentielle et tertiaire.</div>
+        <ul class="service-items">
+          <li>Prises de courant et interrupteurs</li>
+          <li>Plinthes et moulures</li>
+          <li>Boîtes d'encastrement</li>
+          <li>Sonnettes et portiers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zone">
+  <div class="container">
+    <div class="zone-grid">
+      <div class="zone-map reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.754947660851!2d55.5204676760212!3d-21.281165581803982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21780bae20e0f61d%3A0xb1d744c8bc87c20c!2ssapelec!5e0!3m2!1sfr!2sfr!4v1775493646357!5m2!1sfr!2sfr"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="zone-info reveal">
+        <div class="section-label">Zone d'intervention</div>
+        <h2 class="section-title">Basés au Tampon, au service du Sud de La Réunion</h2>
+        <p class="section-sub">Implantés à Le Tampon, nous desservons l'ensemble de la région Sud de l'île. Professionnels du bâtiment, industriels, gestionnaires de patrimoines : nous sommes proches de vous.</p>
+        <div class="zone-address">
+          <span class="zone-address-icon">📍</span>
+          34 rue du Tampon, 97430 Le Tampon
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Pourquoi nous choisir</div>
+      <h2 class="section-title">Ce qui fait la différence Sapelec</h2>
+      <p class="section-sub">Pas une promesse en l'air — des engagements concrets au quotidien.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-num">01</div>
+        <div class="why-title">Produits de qualité certifiée</div>
+        <div class="why-desc">Nous ne commercialisons que des matériels répondant aux normes NF, CE et aux réglementations en vigueur. Votre sécurité, c'est notre priorité.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">02</div>
+        <div class="why-title">Conseil technique expert</div>
+        <div class="why-desc">Notre équipe maîtrise les produits et les contraintes terrain de La Réunion. Vous repartez toujours avec la bonne solution, pas juste le bon prix.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">03</div>
+        <div class="why-title">Disponibilité & réactivité</div>
+        <div class="why-desc">Stock local, commandes rapides. Nous comprenons l'urgence d'un chantier bloqué et faisons tout pour vous dépanner dans les meilleurs délais.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">04</div>
+        <div class="why-title">Partenaire de proximité</div>
+        <div class="why-desc">Ancrés au Tampon depuis des années, nous connaissons vos clients, vos chantiers, vos contraintes. Nous sommes un vrai partenaire local.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Ce qu'on dit de nous</div>
+      <h2 class="section-title">La confiance de nos clients</h2>
+      <p class="section-sub">Des professionnels du bâtiment et de l'industrie nous font confiance au quotidien.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">Toujours bien conseillé chez Sapelec. Je travaille dans le bâtiment depuis 10 ans et j'y vais régulièrement. Stock disponible et équipe sérieuse.</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JM</div>
+          <div>
+            <div class="reviewer-name">Jean-Marc T.</div>
+            <div class="reviewer-role">Électricien, Le Tampon</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">Bonne disponibilité des produits, tarifs corrects et service rapide. Je recommande pour tous les pros du Sud de l'île.</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SR</div>
+          <div>
+            <div class="reviewer-name">Sébastien R.</div>
+            <div class="reviewer-role">Chef de chantier, Saint-Pierre</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">J'apprécie le conseil technique qu'on reçoit ici. On trouve toujours ce qu'on cherche et l'équipe prend le temps d'expliquer. Très pro.</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">NB</div>
+          <div>
+            <div class="reviewer-name">Nicolas B.</div>
+            <div class="reviewer-role">Responsable maintenance, industrie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-note">* Témoignages de clients professionnels.</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Contactez-nous</div>
+      <h2 class="section-title">Demandez votre devis gratuit</h2>
+      <p class="section-sub">Un projet, un besoin spécifique ? Parlez-nous de votre chantier, nous vous répondons rapidement.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div>
+          <div class="contact-block-title">Appelez-nous directement</div>
+          <a href="tel:0692607678" class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Téléphone</div>
+              <div class="contact-val">0692 607 678</div>
+            </div>
+          </a>
+        </div>
+        <div>
+          <div class="contact-block-title">Écrivez-nous</div>
+          <a href="mailto:sapelec974@gmail.com" class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-val">sapelec974@gmail.com</div>
+            </div>
+          </a>
+        </div>
+        <div>
+          <div class="contact-block-title">Venez nous voir</div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Adresse</div>
+              <div class="contact-val">34 rue du Tampon<br>97430 Le Tampon</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-cta-box">
+          <div class="contact-cta-box-title">Un besoin urgent ?</div>
+          <div class="contact-cta-box-sub">Appelez-nous directement, nous répondons vite.</div>
+          <a href="tel:0692607678" class="btn-primary">📞 Appeler maintenant</a>
+        </div>
+      </div>
+      <form class="contact-form reveal" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nom">Nom / Société *</label>
+            <input type="text" id="nom" placeholder="Votre nom ou société" required />
+          </div>
+          <div class="form-group">
+            <label for="tel">Téléphone *</label>
+            <input type="tel" id="tel" placeholder="0692 XXX XXX" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="vous@exemple.com" />
+        </div>
+        <div class="form-group">
+          <label for="sujet">Type de besoin</label>
+          <select id="sujet">
+            <option value="">— Sélectionnez —</option>
+            <option>Matériels pour chantier bâtiment</option>
+            <option>Matériels industriels</option>
+            <option>Câblage & fils</option>
+            <option>Protection & appareillage</option>
+            <option>Éclairage professionnel</option>
+            <option>Outillage & consommables</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Décrivez votre projet *</label>
+          <textarea id="message" placeholder="Dites-nous ce dont vous avez besoin : quantité, délais, type de chantier..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Envoyer ma demande ➜</button>
+        <div class="form-note">* Champs obligatoires — Réponse sous 24h ouvrées</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="logo">SAP<span>ELEC</span></a>
+      <p>Vente de matériels électriques pour le bâtiment et l'industrie.<br>Votre partenaire de confiance au Tampon, La Réunion.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">L'entreprise</a></li>
+        <li><a href="#services">Nos produits</a></li>
+        <li><a href="#zone">Zone d'intervention</a></li>
+        <li><a href="#contact">Demander un devis</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:0692607678">0692 607 678</a></li>
+        <li><a href="mailto:sapelec974@gmail.com">sapelec974@gmail.com</a></li>
+        <li><a href="#">34 rue du Tampon, 97430</a></li>
+        <li><a href="#">Le Tampon — La Réunion</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider">
+    <span>© 2024 Sapelec — Tous droits réservés</span>
+    <span>Matériels électriques · Le Tampon · 974</span>
+  </div>
+</footer>
+
+<div class="floating-cta">
+  <a href="mailto:sapelec974@gmail.com" class="float-btn float-mail">✉️ <span>Email</span></a>
+  <a href="tel:0692607678" class="float-btn float-call">📞 <span>Appeler</span></a>
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✅ Message envoyé !';
+    btn.style.background = '#22C55E';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = 'Envoyer ma demande ➜'; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 4000);
+  }
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    document.querySelectorAll('section[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
+  });
+</script>
+</body>
+</html>
